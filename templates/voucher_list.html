@@ -1,0 +1,61 @@
+{% extends "base.html"%}
+{%block nav%}
+{%include "navbar.html"%}
+{%endblock%}
+{%block content%}
+      {%for v in voucher%}
+
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title"><b>Voucher:</b> {{v.package_name.name}}</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Redemeed</th>
+                        <th scope="col">created_at</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{v.id}}</td>
+                        <td>
+                            {% if v.status %}
+                                Valid
+                            {% else %}
+                                Invalid
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if v.redeemed_status %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </td>
+                        <td>{{v.created_at}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-info" onclick=location.href="{% url 'promotion:single_voucher' v.slug %}"  >view voucher</button>
+            <!-- <button class="btn btn-danger" onclick=location.href="{% url 'promotion:voucher_list'  %}"  >Delete</button> -->
+            </div>
+        </div>
+
+      {%endfor%}
+  
+{%endblock%}
+
+{%block scontent%}
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Aditional links</h5>
+    <p class="card-text"> Click the button bellow to create new voucher ... </p>
+    <button class="btn btn-outline-info" onclick=location.href="{% url 'promotion:voucher_list' %}" type="submit">CREATE VOUCHER</button>
+  </div>
+</div>
+
+
+{%endblock%}
+

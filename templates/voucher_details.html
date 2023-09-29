@@ -1,0 +1,34 @@
+{% extends "base.html"%}
+{%block nav%}
+{%include "navbar.html"%}
+{%endblock%}
+{% load crispy_forms_tags %}
+{% load qr_tags %}
+{% load static %}
+{%block content%}
+
+<div class="card" >
+    <div class="card-body">
+        <img class="" src="{{ voucher.package_name.image }}" height="300" width="300"
+          alt="{{ voucher.package_name.name }}">
+        <div id="qr-code-container" class="">
+            {% qr_from_text link "S" %}
+        </div>
+        <p>Link: {{link}}</p>
+        <p>voucher number:{{voucher.id}}</p>
+        <button class="btn btn-outline-info" onclick=location.href="{% url 'promotion:voucher_list' %}" type="submit">Go Back</button>
+    </div>
+</div>
+{%endblock%}
+
+{%block scontent%}
+<div class="card d-none">
+  <div class="card-body">
+    <h5 class="card-title">Aditional information</h5>
+    <p class="card-text"> A bus can only contain a <b>minimum of 14 seats</b> and a <b>maxmum of 67 seats</b> </p>
+    
+  </div>
+</div>
+
+
+{%endblock%}
