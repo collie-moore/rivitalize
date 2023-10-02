@@ -1,7 +1,4 @@
 {% extends "base.html"%}
-{%block nav%}
-{%include "navbar.html"%}
-{%endblock%}
 {% load crispy_forms_tags %}
 {% load qr_tags %}
 {% load static %}
@@ -16,11 +13,15 @@
        {% else%}
         <p>This Vocher is invalid</p>
        {% endif%}
-       <img class="pt-client-logo" src="{{ voucher.package_name.image.url }}"
-          alt="{{ voucher.package_name.name }}">
-        <div id="qr-code-container" class="">
-            {% qr_from_text passengers.pnr_number "S" %}
+       <div class="row">
+        <div class="col-12">
+              <img class="" src="{{ voucher.package_name.image.url }}" height="300" width="maximum"
+              alt="{{ voucher.package_name.name }}">
         </div>
+        <div class="col-4">
+          {% qr_from_text link "S" %}
+        </div>
+      </div>
 
         {%if canredeem %}
           {%if voucher.status and not voucher.redeemed_status%}

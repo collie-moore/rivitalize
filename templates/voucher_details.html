@@ -4,16 +4,22 @@
 {%endblock%}
 {% load crispy_forms_tags %}
 {% load qr_tags %}
-{% load static %}
 {%block content%}
+{% load static %}
 
 <div class="card" >
     <div class="card-body">
-        <img class="" src="{{ voucher.package_name.image }}" height="300" width="300"
-          alt="{{ voucher.package_name.name }}">
-        <div id="qr-code-container" class="">
-            {% qr_from_text link "S" %}
+      <div class="row">
+        <div class="col-12">
+              <img class="" src="{{ voucher.package_name.image.url }}" height="300" width="maximum"
+              alt="{{ voucher.package_name.name }}">
         </div>
+        <div class="col-4">
+          {% qr_from_text link "S" %}
+        </div>
+        
+            
+      </div>
         <p>Link: {{link}}</p>
         <p>voucher number:{{voucher.id}}</p>
         <button class="btn btn-outline-info" onclick=location.href="{% url 'promotion:voucher_list' %}" type="submit">Go Back</button>

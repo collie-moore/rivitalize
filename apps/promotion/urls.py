@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
 
+from django.conf.urls.static import static
+
+
 app_name = 'promotion'
 
 urlpatterns = [
@@ -10,3 +13,4 @@ urlpatterns = [
     path('redeem_voucher/<slug:slug>/',views.redeem_voucher, name='redeem_voucher'),
     path('package_list/', views.package_list, name='package_list'),
 ]
+
