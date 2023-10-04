@@ -1,2 +1,6 @@
 env
 venv
+
+# Ignore migrations and static files
+apps/*/migrations
+apps/*/__pycache__
