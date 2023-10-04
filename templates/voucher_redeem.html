@@ -3,25 +3,53 @@
 {% load qr_tags %}
 {% load static %}
 {%block content%}
+{%block css_styles%}
+<style type="text/css" media="screen">
+  .img-div img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  .qr-container {
+    position: relative;
+  }
+  .qr-code {
+    position: absolute;
+    bottom: 9%;
+    right: 15%;
+    height: 20%;
+    width: 20%;
+    padding: 0;
+  }
+  .qr-code img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+</style>
+{%endblock%}
 
 <div class="card" >
     <div class="card-body">
        {% if voucher.status and voucher.redeemed_status %}
-        <p>This Vocher is Vaid And already Redeemed</p>
+        <p>This vocher is vaid & already Redeemed</p>
        {%elif voucher.status and not voucher.redeemed_status%}
-        <p>This Vocher is Vaid And Not Yet Redeemed</p>
+        <p>This vocher is valid & Not yet Redeemed</p>
        {% else%}
         <p>This Vocher is invalid</p>
        {% endif%}
-       <div class="row">
-        <div class="col-12">
-              <img class="" src="{{ voucher.package_name.image.url }}" height="300" width="maximum"
+       <div class="row qr-container">
+        <div class="col-12 img-div">
+              <img class="" src="{{ voucher.package_name.image.url }}"
               alt="{{ voucher.package_name.name }}">
         </div>
-        <div class="col-4">
+        <div class="col-4 qr-code">
           {% qr_from_text link "S" %}
         </div>
+        
+            
       </div>
+      <p></p>
 
         {%if canredeem %}
           {%if voucher.status and not voucher.redeemed_status%}

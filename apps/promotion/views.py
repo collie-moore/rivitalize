@@ -11,18 +11,19 @@ def voucher_list(request):
 
 def single_voucher(request,slug):
     voucher= Voucher.objects.get(slug=slug)
-    link = request.build_absolute_uri(reverse('promotion:redeem_voucher', kwargs={"slug": voucher.slug}))
-    print(voucher.package_name.image)
+    # link = request.build_absolute_uri(reverse('promotion:redeem_voucher', kwargs={"slug": voucher.slug}))
+    link = "https://spa.amdava.org/redeem_voucher/" + slug
     return render(request,'voucher_details.html',{'voucher' : voucher, "link":link})
 
 
 def redeem_voucher(request,slug):
+    link = "https://spa.amdava.org/redeem_voucher/" + slug
     Can_redeem = False
     if request.user.is_authenticated:
         Can_redeem = True
     
     voucher= Voucher.objects.get(slug=slug)
-    return render(request,'voucher_redeem.html',{'voucher' : voucher, 'canredeem':Can_redeem })
+    return render(request,'voucher_redeem.html',{'voucher' : voucher, 'canredeem':Can_redeem,"link":link})
 
 def customer_redeem_voucher(request,slug):
     

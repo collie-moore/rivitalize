@@ -7,20 +7,47 @@
 {%block content%}
 {% load static %}
 
+{%block css_styles%}
+<style type="text/css" media="screen">
+  .img-div img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+  .qr-container {
+    position: relative;
+  }
+  .qr-code {
+    position: absolute;
+    bottom: 9%;
+    right: 15%;
+    height: 20%;
+    width: 20%;
+    padding: 0;
+  }
+  .qr-code img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+</style>
+{%endblock%}
+
 <div class="card" >
     <div class="card-body">
-      <div class="row">
-        <div class="col-12">
-              <img class="" src="{{ voucher.package_name.image.url }}" height="300" width="maximum"
+      <div class="row qr-container">
+        <div class="col-12 img-div">
+              <img class="" src="{{ voucher.package_name.image.url }}"
               alt="{{ voucher.package_name.name }}">
         </div>
-        <div class="col-4">
+        <div class="col-4 qr-code">
           {% qr_from_text link "S" %}
         </div>
         
             
       </div>
-        <p>Link: {{link}}</p>
+        <p></p>
+        <p>link: <a><i>{{link}}</i></a></p>
         <p>voucher number:{{voucher.id}}</p>
         <button class="btn btn-outline-info" onclick=location.href="{% url 'promotion:voucher_list' %}" type="submit">Go Back</button>
     </div>
