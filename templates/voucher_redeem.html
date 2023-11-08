@@ -32,11 +32,11 @@
 <div class="card" >
     <div class="card-body">
        {% if voucher.status and voucher.redeemed_status %}
-        <p>This vocher is vaid & already Redeemed</p>
+        <p>This voucher is vaid & already Redeemed</p>
        {%elif voucher.status and not voucher.redeemed_status%}
-        <p>This vocher is valid & Not yet Redeemed</p>
+        <p>This voucher is valid & Not yet Redeemed</p>
        {% else%}
-        <p>This Vocher is invalid</p>
+        <p>This Voucher is invalid</p>
        {% endif%}
        <div class="row qr-container">
         <div class="col-12 img-div">
@@ -53,9 +53,9 @@
 
         {%if canredeem %}
           {%if voucher.status and not voucher.redeemed_status%}
-            <button class="btn btn-outline-info" onclick=location.href="{% url 'promotion:customer_redeem_voucher' voucher.slug %}" type="submit">Redeem</button>
+            <button class="btn btn-outline-info" onclick=location.href="{% url 'promotion:customer_redeem_voucher' voucher.slug %}" type="submit">Redeem Voucher no. {{voucher.id}}</button>
           {% endif %}
-          <button class="btn btn-outline-info" onclick=location.href="{% url 'promotion:voucher_list' %}" type="submit">Go Back</button>
+          <button class="btn btn-outline-info" onclick=location.href="{% url 'promotion:voucher_list' %}" type="submit">Back to voucher list</button>
         {%endif%}
     </div>
 </div>
